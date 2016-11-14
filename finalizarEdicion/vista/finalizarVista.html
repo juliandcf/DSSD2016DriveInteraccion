@@ -31,6 +31,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
+                {% if mismoUsuario == true %}
+      
+     
             <h1>Usted es el usuario {{autor.NOMBRE}} {{autor.APELLIDO}}</h1>
             <p>Esta seguro que desea finalizar la edicion del trabajo "{{autor.TITULO}}" ?</p>
             <br>
@@ -39,6 +42,9 @@
               <input type="hidden" name="id_drive" value="{{autor.ID_GOOGLE_DRIVE}}">
               <button class="btn btn-lg btn-default">Finalizar</a>
             </form>
+             {% else %}            
+                <h1>La cuenta con la que se logeó no tiene permisos sobre este archivo</h1>
+             {% endif %}
           </div>
         </div>
       </div>
