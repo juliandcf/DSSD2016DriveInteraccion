@@ -18,7 +18,7 @@ function cambiar_estado($id_drive, $estado){
 function listar_autores(){
 		$sql = "SELECT * FROM AUTOR INNER JOIN TRABAJO WHERE TRABAJO.AUTOR_FK = AUTOR.ID_AUTOR";
 		$array = array();
-		return consulta_listar_items($sql, $array);;
+		return consulta_listar_items($sql, $array);
 
 	}
 

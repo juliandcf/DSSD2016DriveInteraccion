@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DSSD - 2016 - Cloud y API drive</title>
+ 
+   <!-- CSS de Bootstrap -->
+    <link href="vista/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="vista/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="vista/bootstrap/dist/css/starter-template.css">
+ 
+    <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+  <div class="container">
+    <section>
+      {% if msjError|length > 0 %}
+      <div class="alert alert-danger">
+        <p>{{ msjError }}</p>
+      </div>
+      {% endif %}
+    </section>
+<div class="cover">
+      <div class="cover-image"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+                {% if mismoUsuario == true %}
+      
+     
+            <h1>Usted es el usuario {{autor.NOMBRE}} {{autor.APELLIDO}}</h1>
+            <p>Esta seguro que desea finalizar la edicion del trabajo "{{autor.TITULO}}" ?</p>
+            <br>
+            <br>
+            <form action="soloLectura.php" method="post">
+              <input type="hidden" name="id_drive" value="{{autor.ID_GOOGLE_DRIVE}}">
+              <button class="btn btn-lg btn-default">Finalizar</a>
+            </form>
+             {% else %}            
+                <h1>La cuenta con la que se logeó no tiene permisos sobre este archivo</h1>
+             {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>             
+  </div>
+  <script type="text/javascript" language="javascript" src="vista/js/jquery-1.12.3.js"></script>
+  
+  <script src="vista/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="vista/formvalidation/dist/js/framework/bootstrap.min.js"></script>
+</body>
+</html>

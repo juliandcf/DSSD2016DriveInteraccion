@@ -4,40 +4,36 @@
 	function consulta_tipo_abm($sql, $array){
 		try{
 			$cn = conectar();
+			$cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$cn->beginTransaction();
 			$query = $cn->prepare($sql);
 			$query->execute($array);
-			$cn = desconectar();
+			$cn->commit();
 		}
 		catch(PDOException $e){
+	   		$cn->rollBack();
 	   		return $e->getCode();
 		}
-	}
-
-	function consulta_alta_con_relacionados($sql, $array, $nombre_tabla){
-		try{
-			$cn = conectar();
-			$query = $cn->prepare($sql);
-			$query->execute($array);
-			$ultimo_id = $cn->lastInsertId($nombre_tabla); 
-			$cn = desconectar();
-			return $ultimo_id;
+		finally{
+		$cn = desconectar();
 		}
-		catch(PDOException $e){
-	   		return $e->getCode();
-		}
-
 	}
 
 	function consulta_listar_items($sql, $array){
 		try{
 			$cn = conectar();
+			$cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$cn->beginTransaction();
 			$query = $cn->prepare($sql);
 			$query->execute($array);
-			$cn = desconectar();
+			$cn->commit();
 			return $query->fetchAll();
 		}
 		catch(PDOException $e){
+			$cn->rollBack();
 	   		return $e->getCode();
+		}finally{
+			$cn = desconectar();
 		}
 	}
 
