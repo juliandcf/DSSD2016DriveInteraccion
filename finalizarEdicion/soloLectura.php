@@ -16,8 +16,9 @@ if (isset($_SESSION['access_token'])){
          'fields' => 'owners(permissionId), permissions(id)'
          );
         $archivo = $drive_service->files->get($id, $optParams);
-        $permiso_propietario=($archivo->owners)[0]['permissionId'];
-        
+       // $permiso_propietario=($archivo->owners)[0]['permissionId'];
+        $item=($archivo->owners)[0];
+        $permiso_propietario=$item['permissionId'];
         $permisos_a_borrar=[];
         $permisos_archivo=$archivo->getPermissions();
         $drive_service->getClient()->setUseBatch(true);
